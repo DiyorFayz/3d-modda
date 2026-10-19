@@ -1,0 +1,66 @@
+{
+  "ok": true,
+  "code": "finished",
+  "complete": true,
+  "completed_jobs": [
+    "command"
+  ],
+  "pending_jobs": [],
+  "peak_live_jobs": 1,
+  "peak_processes": 1,
+  "peak_tree_rss_bytes": 0,
+  "peak_cgroup_current_bytes": 860106752,
+  "cleanup_complete": true,
+  "jobs_sha256": "813f2eee76d24d59d1a3d66b273e24b390ddf9069f2f832583ae6c67e52964fc",
+  "limits": {
+    "max_tree_bytes": 2147483648,
+    "max_live_jobs": 1,
+    "max_processes": 16,
+    "node_reserve_bytes": 1073741824,
+    "timeout_seconds": 600.0,
+    "max_output_bytes": 8388608,
+    "reserve_bytes": 2147483648
+  },
+  "measurement": "100ms sampled tree RSS sum (shared pages counted repeatedly); cgroup current includes Agent/cache; memory.peak is cgroup lifetime",
+  "before": {
+    "memory.max": 8589934592,
+    "memory.current": 860106752,
+    "memory_headroom_bytes": 7729827840,
+    "cgroup_headroom_bytes": 7729827840,
+    "container_headroom_bytes": 7729827840,
+    "finite_cgroup_limit_bytes": 8589934592,
+    "node_available_bytes": 12839923712,
+    "anon_bytes": 615514112,
+    "file_bytes": 218365952,
+    "ancestor_visibility": "visible_only",
+    "cgroups": [
+      {
+        "path": "/sys/fs/cgroup",
+        "max_bytes": 8589934592,
+        "current_bytes": 860106752
+      }
+    ],
+    "memory.peak": 1138348032
+  },
+  "last_memory": {
+    "memory.max": 8589934592,
+    "memory.current": 859774976,
+    "memory_headroom_bytes": 7730159616,
+    "cgroup_headroom_bytes": 7730159616,
+    "container_headroom_bytes": 7730159616,
+    "finite_cgroup_limit_bytes": 8589934592,
+    "node_available_bytes": 12837765120,
+    "anon_bytes": 615514112,
+    "file_bytes": 217915392,
+    "ancestor_visibility": "visible_only",
+    "cgroups": [
+      {
+        "path": "/sys/fs/cgroup",
+        "max_bytes": 8589934592,
+        "current_bytes": 859774976
+      }
+    ],
+    "memory.peak": 1138348032
+  },
+  "seconds": 0.14515731399296783
+}

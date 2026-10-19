@@ -1,0 +1,8 @@
+passed: True
+pages: 8
+words: 2573
+pdf_images: 5
+figure_files: 5
+references_bib: 7
+source_citations: 1
+failed_checks: none

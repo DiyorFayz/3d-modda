@@ -1,0 +1,36 @@
+{
+  "pdf_path": "/mnt/novix-k8s-workspace-root/session_6c5742de36de09c82c0e99c037426a50/workspace/writing_space/bcr-abl-inhibitors-visual-study-guide.pdf",
+  "mode": "report",
+  "pages": 8,
+  "words": 2573,
+  "pdf_images": 5,
+  "figure_files": 5,
+  "references_bib": 7,
+  "source_citations": 1,
+  "fonts": [
+    "IEJTWN+DejaVuSans",
+    "RGMCTS+DejaVuSans-Bold",
+    "CIQHNX+LatinModernMath-Regular-Identity-H CID Type 0C",
+    "URNXGM+DejaVuSans-Oblique"
+  ],
+  "required_sections": {
+    "Executive Summary": true,
+    "Recommendations": true,
+    "References": true,
+    "Imatinib": true,
+    "Nilotinib": true,
+    "Dasatinib": true,
+    "Bosutinib": true,
+    "Self-check": true
+  },
+  "checks": {
+    "pdf_exists": true,
+    "min_pages": true,
+    "min_words": true,
+    "min_figures": true,
+    "min_references": true,
+    "required_sections": true
+  },
+  "failed_checks": [],
+  "passed": true
+}

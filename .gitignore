@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local IDE / OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Temp files
+scratch/
+fetch_assets.py
+generate_data.py

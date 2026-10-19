@@ -1,0 +1,68 @@
+{
+  "ok": false,
+  "code": "job_failed",
+  "complete": false,
+  "completed_jobs": [],
+  "pending_jobs": [
+    "command"
+  ],
+  "peak_live_jobs": 1,
+  "peak_processes": 4,
+  "peak_tree_rss_bytes": 392523776,
+  "peak_cgroup_current_bytes": 1109868544,
+  "cleanup_complete": true,
+  "jobs_sha256": "d91cc175819b15736316e95859230499fc5857bc765c993b7a308661f7d1355e",
+  "limits": {
+    "max_tree_bytes": 2147483648,
+    "max_live_jobs": 1,
+    "max_processes": 16,
+    "node_reserve_bytes": 1073741824,
+    "timeout_seconds": 600.0,
+    "max_output_bytes": 8388608,
+    "reserve_bytes": 2147483648
+  },
+  "measurement": "100ms sampled tree RSS sum (shared pages counted repeatedly); cgroup current includes Agent/cache; memory.peak is cgroup lifetime",
+  "before": {
+    "memory.max": 8589934592,
+    "memory.current": 833622016,
+    "memory_headroom_bytes": 7756312576,
+    "cgroup_headroom_bytes": 7756312576,
+    "container_headroom_bytes": 7756312576,
+    "finite_cgroup_limit_bytes": 8589934592,
+    "node_available_bytes": 13189971968,
+    "anon_bytes": 600915968,
+    "file_bytes": 209604608,
+    "ancestor_visibility": "visible_only",
+    "cgroups": [
+      {
+        "path": "/sys/fs/cgroup",
+        "max_bytes": 8589934592,
+        "current_bytes": 833622016
+      }
+    ],
+    "memory.peak": 1007845376
+  },
+  "last_memory": {
+    "memory.max": 8589934592,
+    "memory.current": 839159808,
+    "memory_headroom_bytes": 7750774784,
+    "cgroup_headroom_bytes": 7750774784,
+    "container_headroom_bytes": 7750774784,
+    "finite_cgroup_limit_bytes": 8589934592,
+    "node_available_bytes": 13191524352,
+    "anon_bytes": 600936448,
+    "file_bytes": 212488192,
+    "ancestor_visibility": "visible_only",
+    "cgroups": [
+      {
+        "path": "/sys/fs/cgroup",
+        "max_bytes": 8589934592,
+        "current_bytes": 839159808
+      }
+    ],
+    "memory.peak": 1109868544
+  },
+  "failed_job": "command",
+  "job_exit_code": 43,
+  "seconds": 11.153380522999214
+}

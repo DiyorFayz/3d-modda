@@ -1,0 +1,6 @@
+[
+ {"name":"Imatinib","slug":"imatinib","cid":5291,"chebi":45783,"formula":"C29H31N7O","inchikey":"KTUFNOKKBVMGRW-UHFFFAOYSA-N","pubchem_smiles":"CC1=C(C=C(C=C1)NC(=O)C2=CC=C(C=C2)CN3CCN(CC3)C)NC4=NC=CC(=N4)C5=CN=CC=C5","chebi_smiles":"Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1"},
+ {"name":"Nilotinib","slug":"nilotinib","cid":644241,"chebi":52172,"formula":"C28H22F3N7O","inchikey":"HHZIURLSWUIHRB-UHFFFAOYSA-N","pubchem_smiles":"CC1=C(C=C(C=C1)C(=O)NC2=CC(=CC(=C2)C(F)(F)F)N3C=C(N=C3)C)NC4=NC=CC(=N4)C5=CN=CC=C5","chebi_smiles":"Cc1cn(-c2cc(NC(=O)c3ccc(C)c(Nc4nccc(-c5cccnc5)n4)c3)cc(C(F)(F)F)c2)cn1"},
+ {"name":"Dasatinib","slug":"dasatinib","cid":3062316,"chebi":49375,"formula":"C22H26ClN7O2S","inchikey":"ZBNZXTGUTAYRHI-UHFFFAOYSA-N","pubchem_smiles":"CC1=C(C(=CC=C1)Cl)NC(=O)C2=CN=C(S2)NC3=CC(=NC(=N3)C)N4CCN(CC4)CCO","chebi_smiles":"Cc1nc(Nc2ncc(C(=O)Nc3c(C)cccc3Cl)s2)cc(N2CCN(CCO)CC2)n1"},
+ {"name":"Bosutinib","slug":"bosutinib","cid":5328940,"chebi":39112,"formula":"C26H29Cl2N5O3","inchikey":"UBPYILGKFZZVDX-UHFFFAOYSA-N","pubchem_smiles":"CN1CCN(CC1)CCCOC2=C(C=C3C(=C2)N=CC(=C3NC4=CC(=C(C=C4Cl)Cl)OC)C#N)OC","chebi_smiles":"COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl"}
+]

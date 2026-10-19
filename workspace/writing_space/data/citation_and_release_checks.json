@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "pages": 8,
+  "integrated_figures": 5,
+  "source_groups": 7,
+  "mechanism_paper_in_MCP_cache": true,
+  "placeholders": false,
+  "feature_checks": [
+    {
+      "drug": "Imatinib",
+      "amide": true,
+      "nitrile": false
+    },
+    {
+      "drug": "Nilotinib",
+      "amide": true,
+      "nitrile": false
+    },
+    {
+      "drug": "Dasatinib",
+      "amide": true,
+      "nitrile": false
+    },
+    {
+      "drug": "Bosutinib",
+      "amide": false,
+      "nitrile": true
+    }
+  ],
+  "page_checks": [
+    {
+      "page": 1,
+      "text_words": 291,
+      "text_within_page": true
+    },
+    {
+      "page": 2,
+      "text_words": 270,
+      "text_within_page": true
+    },
+    {
+      "page": 3,
+      "text_words": 301,
+      "text_within_page": true
+    },
+    {
+      "page": 4,
+      "text_words": 305,
+      "text_within_page": true
+    },
+    {
+      "page": 5,
+      "text_words": 309,
+      "text_within_page": true
+    },
+    {
+      "page": 6,
+      "text_words": 328,
+      "text_within_page": true
+    },
+    {
+      "page": 7,
+      "text_words": 365,
+      "text_within_page": true
+    },
+    {
+      "page": 8,
+      "text_words": 250,
+      "text_within_page": true
+    }
+  ],
+  "pdf_sha256": "c9ffcb831d25d22b178df6becbe86c8785c675cc9f18e433e5595639d794a11f"
+}

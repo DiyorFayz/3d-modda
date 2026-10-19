@@ -1,0 +1,68 @@
+{
+  "ok": false,
+  "code": "job_failed",
+  "complete": false,
+  "completed_jobs": [],
+  "pending_jobs": [
+    "command"
+  ],
+  "peak_live_jobs": 1,
+  "peak_processes": 4,
+  "peak_tree_rss_bytes": 393183232,
+  "peak_cgroup_current_bytes": 1112633344,
+  "cleanup_complete": true,
+  "jobs_sha256": "5195b33dbf18967b4a4fda4f7f6072c65642035145a281b3fc95c486700c7a96",
+  "limits": {
+    "max_tree_bytes": 2147483648,
+    "max_live_jobs": 1,
+    "max_processes": 16,
+    "node_reserve_bytes": 1073741824,
+    "timeout_seconds": 600.0,
+    "max_output_bytes": 8388608,
+    "reserve_bytes": 2147483648
+  },
+  "measurement": "100ms sampled tree RSS sum (shared pages counted repeatedly); cgroup current includes Agent/cache; memory.peak is cgroup lifetime",
+  "before": {
+    "memory.max": 8589934592,
+    "memory.current": 840970240,
+    "memory_headroom_bytes": 7748964352,
+    "cgroup_headroom_bytes": 7748964352,
+    "container_headroom_bytes": 7748964352,
+    "finite_cgroup_limit_bytes": 8589934592,
+    "node_available_bytes": 13234221056,
+    "anon_bytes": 602841088,
+    "file_bytes": 212525056,
+    "ancestor_visibility": "visible_only",
+    "cgroups": [
+      {
+        "path": "/sys/fs/cgroup",
+        "max_bytes": 8589934592,
+        "current_bytes": 840970240
+      }
+    ],
+    "memory.peak": 1109868544
+  },
+  "last_memory": {
+    "memory.max": 8589934592,
+    "memory.current": 841273344,
+    "memory_headroom_bytes": 7748661248,
+    "cgroup_headroom_bytes": 7748661248,
+    "container_headroom_bytes": 7748661248,
+    "finite_cgroup_limit_bytes": 8589934592,
+    "node_available_bytes": 13149847552,
+    "anon_bytes": 603025408,
+    "file_bytes": 212520960,
+    "ancestor_visibility": "visible_only",
+    "cgroups": [
+      {
+        "path": "/sys/fs/cgroup",
+        "max_bytes": 8589934592,
+        "current_bytes": 841273344
+      }
+    ],
+    "memory.peak": 1113014272
+  },
+  "failed_job": "command",
+  "job_exit_code": 43,
+  "seconds": 8.098351723019732
+}

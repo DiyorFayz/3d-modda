@@ -1,0 +1,66 @@
+{
+  "rdkit_version": "2026.09.1",
+  "results": [
+    {
+      "drug": "Imatinib",
+      "connectivity_crosscheck": "PASS",
+      "formula": "C29H31N7O",
+      "inchikey": "KTUFNOKKBVMGRW-UHFFFAOYSA-N",
+      "neutral_parent": true,
+      "aromatic_rings": 4,
+      "piperazine": true,
+      "highlight_labels": {
+        "A": "N-containing aromatic rings",
+        "B": "Amide: C(=O)-NH",
+        "C": "Piperazine: non-aromatic ring"
+      },
+      "image": "/mnt/novix-k8s-workspace-root/session_6c5742de36de09c82c0e99c037426a50/workspace/writing_space/figures/bcr-abl-inhibitors-fig02-imatinib.png"
+    },
+    {
+      "drug": "Nilotinib",
+      "connectivity_crosscheck": "PASS",
+      "formula": "C28H22F3N7O",
+      "inchikey": "HHZIURLSWUIHRB-UHFFFAOYSA-N",
+      "neutral_parent": true,
+      "aromatic_rings": 5,
+      "piperazine": false,
+      "highlight_labels": {
+        "A": "N-containing aromatic rings",
+        "B": "Amide: C(=O)-NH",
+        "D": "Trifluoromethyl: CF3"
+      },
+      "image": "/mnt/novix-k8s-workspace-root/session_6c5742de36de09c82c0e99c037426a50/workspace/writing_space/figures/bcr-abl-inhibitors-fig03-nilotinib.png"
+    },
+    {
+      "drug": "Dasatinib",
+      "connectivity_crosscheck": "PASS",
+      "formula": "C22H26ClN7O2S",
+      "inchikey": "ZBNZXTGUTAYRHI-UHFFFAOYSA-N",
+      "neutral_parent": true,
+      "aromatic_rings": 3,
+      "piperazine": true,
+      "highlight_labels": {
+        "A": "N-containing aromatic rings",
+        "B": "Amide: C(=O)-NH",
+        "C": "Piperazine: non-aromatic ring",
+        "D": "Thiazole: five-membered N/S ring"
+      },
+      "image": "/mnt/novix-k8s-workspace-root/session_6c5742de36de09c82c0e99c037426a50/workspace/writing_space/figures/bcr-abl-inhibitors-fig04-dasatinib.png"
+    },
+    {
+      "drug": "Bosutinib",
+      "connectivity_crosscheck": "PASS",
+      "formula": "C26H29Cl2N5O3",
+      "inchikey": "UBPYILGKFZZVDX-UHFFFAOYSA-N",
+      "neutral_parent": true,
+      "aromatic_rings": 3,
+      "piperazine": true,
+      "highlight_labels": {
+        "A": "Fused quinoline rings",
+        "B": "Nitrile: C triple-bond N",
+        "C": "Piperazine: non-aromatic ring"
+      },
+      "image": "/mnt/novix-k8s-workspace-root/session_6c5742de36de09c82c0e99c037426a50/workspace/writing_space/figures/bcr-abl-inhibitors-fig05-bosutinib.png"
+    }
+  ]
+}

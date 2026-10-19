@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BCR–ABL Ingibitorlari Link Hub & 3D 360° Molekulyar Viewer</title>
+  <meta name="description" content="Imatinib, Nilotinib, Dasatinib va Bosutinib moddalarining 3D molekulyar strukturalarini 360 daraja burchaklarda aylantirib tomosha qilish interaktiv link hubi.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- 3Dmol.js local with CDN fallback -->
+  <script src="assets/vendor/3Dmol-min.js"></script>
+  <script>
+    if (typeof $3Dmol === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.0.4/3Dmol-min.js"><\/script>');
+    }
+  </script>
+  
+  <!-- Embedded Data -->
+  <script src="data/molecules.js"></script>
+</head>
+<body>
+
+  <!-- Top App Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+        </div>
+        <div class="brand-title">
+          <h1 id="ui-brand-title">BCR–ABL 3D Link Hub</h1>
+          <p id="ui-brand-sub">Kinaza ingibitorlari · 360° Interaktiv Strukturaviy Portal</p>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <button id="lang-btn" class="lang-toggle" title="Tilni o'zgartirish">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="lang-label">O'zbekcha / EN</span>
+        </button>
+        <a href="#comparison-section" class="btn-secondary">
+          <span id="ui-btn-compare">Qiyosiy tahlil</span>
+        </a>
+        <a href="#study-section" class="btn-primary">
+          <span id="ui-btn-study">O'rganish qo'llanmasi</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <div class="hero-banner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="hero-badge-pulse"></div>
+          <span id="ui-hero-badge">3D WebGL Molekulyar Dinamika</span>
+        </div>
+        <h2 id="ui-hero-h2">Moddalarning 3D strukturalarini <span>360° burchakda</span> tahlil qiling</h2>
+        <p id="ui-hero-p">BCR–ABL leykemiya nishoniga ta'sir qiluvchi to'rtta asosiy ingibitor (Imatinib, Nilotinib, Dasatinib, Bosutinib) va yangi avlod moddalarining 3D fazoviy konformatsiyalari, anatomik belgilari va rasmiy xalqaro havola resurslari.</p>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">4+2</span>
+            <span class="stat-label" id="ui-stat-1">Moddalar & Avlodlar</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">360°</span>
+            <span class="stat-label" id="ui-stat-2">Fazo aylanishi</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">8+</span>
+            <span class="stat-label" id="ui-stat-3">Baza & 3D vositalar</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label" id="ui-stat-4">Tasdiqlangan SMILES</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Molecule Selector Pills -->
+  <div class="selector-nav-wrapper">
+    <div class="selector-nav" id="molecule-pills">
+      <!-- Generated dynamically -->
+    </div>
+  </div>
+
+  <!-- Main Grid: 3D Viewer & Details Sidebar -->
+  <main class="main-container">
+    
+    <!-- 3D Viewer Section -->
+    <div class="glass-panel viewer-card">
+      <div class="viewer-header">
+        <div class="viewer-title-group">
+          <span class="viewer-title" id="active-mol-name">Imatinib</span>
+          <span class="viewer-badge" id="active-mol-trade">Gleevec</span>
+          <span class="viewer-badge-360">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            360° Interaktiv
+          </span>
+        </div>
+        
+        <div class="viewer-actions">
+          <button class="icon-btn" id="btn-fullscreen" title="To'liq ekranga o'tish">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+          </button>
+          <button class="icon-btn" id="btn-screenshot" title="HD rasm yuklab olish">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Viewport -->
+      <div class="viewer-viewport-wrapper" id="viewport-wrapper">
+        
+        <!-- HUD 360 status -->
+        <div class="hud-compass">
+          <div class="compass-ring"></div>
+          <span id="hud-rotation-text">360° Aylanish faol</span>
+        </div>
+        
+        <!-- View switch tabs (3D vs 2D Diagram) -->
+        <div class="view-mode-tabs">
+          <button class="view-tab-btn active" id="tab-mode-3d">3D WebGL</button>
+          <button class="view-tab-btn" id="tab-mode-2d">2D Sxema</button>
+        </div>
+        
+        <!-- 3Dmol canvas container -->
+        <div id="mol-viewport"></div>
+        
+        <!-- 2D Overlay Diagram -->
+        <div class="view-2d-overlay" id="overlay-2d">
+          <img id="overlay-2d-img" src="" alt="2D Chemical Diagram with Highlight Landmarks">
+        </div>
+        
+        <!-- Atom Tooltip info -->
+        <div class="hud-atom-info" id="atom-info-box">
+          <div class="atom-color-indicator" id="atom-indicator"></div>
+          <span id="atom-info-text">Atom ma'lumotini ko'rish uchun molekula ustiga bosing</span>
+        </div>
+      </div>
+      
+      <!-- Viewer Controls Toolbar -->
+      <div class="viewer-controls-bar">
+        
+        <!-- Spin Control -->
+        <div class="control-group">
+          <span class="control-label" id="ui-spin-lbl">Aylanish:</span>
+          <button class="btn-ctrl active" id="btn-toggle-spin">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            <span id="spin-btn-text">360° Avto</span>
+          </button>
+          <button class="btn-ctrl" id="btn-speed-toggle">1x</button>
+        </div>
+        
+        <!-- Axis rotation -->
+        <div class="control-group">
+          <span class="control-label">Burchak:</span>
+          <button class="btn-ctrl" id="btn-rot-x" title="X o'qi bo'yicha 90°">X 90°</button>
+          <button class="btn-ctrl" id="btn-rot-y" title="Y o'qi bo'yicha 90°">Y 90°</button>
+          <button class="btn-ctrl" id="btn-rot-z" title="Z o'qi bo'yicha 90°">Z 90°</button>
+        </div>
+        
+        <!-- Render Styles -->
+        <div class="control-group">
+          <span class="control-label" id="ui-style-lbl">Model:</span>
+          <select id="style-select" class="btn-ctrl">
+            <option value="ballAndStick" selected>Ball & Stick (Koptok-sterjen)</option>
+            <option value="spacefill">Spacefill (Van-der-Vaals CPK)</option>
+            <option value="stick">Stick (Sterjenlar)</option>
+            <option value="wireframe">Wireframe (Skelet)</option>
+            <option value="surface">Surface (Sirt ko'rinishi)</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <button class="btn-ctrl" id="btn-reset-cam" title="Ko'rinishni tiklash">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            <span>Reset</span>
+          </button>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- Sidebar: Link Hub & Molecule Intelligence -->
+    <div class="details-sidebar">
+      
+      <!-- Direct Link Hub Card -->
+      <div class="glass-panel side-card">
+        <div class="side-card-title">
+          <span id="ui-link-hub-title">3D & Ma'lumotlar Link Hubi</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--text-dim); margin-bottom: 0.75rem;" id="ui-link-hub-desc">
+          Mazkur moddaning tashqi interaktiv 3D vizualizatorlari va xalqaro kimyoviy bazalariga to'g'ridan-to'g'ri havolalar:
+        </p>
+        
+        <div class="hub-link-grid" id="hub-links-container">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+      
+      <!-- Chemical Identity Card -->
+      <div class="glass-panel side-card">
+        <div class="side-card-title">
+          <span id="ui-chem-id-title">Kimyoviy Parametrlar</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+            <line x1="6" y1="6" x2="6.01" y2="6"/>
+            <line x1="6" y1="18" x2="6.01" y2="18"/>
+          </svg>
+        </div>
+        
+        <!-- Formula & MW Grid -->
+        <div class="prop-list">
+          <div class="prop-box">
+            <div class="prop-box-label" id="ui-prop-formula">Brutto Formula</div>
+            <div class="prop-box-val" id="val-formula">C29H31N7O</div>
+          </div>
+          <div class="prop-box">
+            <div class="prop-box-label" id="ui-prop-mw">Molekulyar Og'irlik</div>
+            <div class="prop-box-val" id="val-mw">493.6 g/mol</div>
+          </div>
+          <div class="prop-box">
+            <div class="prop-box-label">PubChem CID</div>
+            <div class="prop-box-val" id="val-cid">5291</div>
+          </div>
+          <div class="prop-box">
+            <div class="prop-box-label">ChEBI ID</div>
+            <div class="prop-box-val" id="val-chebi">45783</div>
+          </div>
+        </div>
+        
+        <!-- Memory Cue Callout -->
+        <div class="memory-cue-box">
+          <div class="memory-cue-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span id="ui-memory-cue-label">Xotira Kaliti (Mnemonic)</span>
+          </div>
+          <div class="memory-cue-text" id="val-memory-cue">
+            "Imatinib = Azotli halqalar juftligi + amid ko'prigi + piperazin dumi"
+          </div>
+        </div>
+        
+        <!-- SMILES copy bar -->
+        <div class="prop-box-label" style="margin-top: 0.5rem;">Canonical SMILES:</div>
+        <div class="snippet-bar">
+          <span id="val-smiles">CC1=C...</span>
+          <button class="btn-copy" id="btn-copy-smiles" title="Nusxalash">Copy</button>
+        </div>
+        
+        <!-- InChIKey copy bar -->
+        <div class="prop-box-label" style="margin-top: 0.5rem;">InChIKey:</div>
+        <div class="snippet-bar">
+          <span id="val-inchikey">KTUFNOKKBVMGRW-UHFFFAOYSA-N</span>
+          <button class="btn-copy" id="btn-copy-inchikey" title="Nusxalash">Copy</button>
+        </div>
+        
+        <!-- Action downloads -->
+        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+          <a id="btn-dl-sdf" href="#" class="btn-secondary" style="flex: 1; justify-content: center;" download>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>3D SDF Fayl</span>
+          </a>
+          <button id="btn-view-pdb" class="btn-secondary" style="flex: 1; justify-content: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+              <polyline points="2 17 12 22 22 17"/>
+              <polyline points="2 12 12 17 22 12"/>
+            </svg>
+            <span id="ui-pdb-btn-label">PDB Kompleks</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- 4 Landmarks & Anatomical Chunks -->
+      <div class="glass-panel side-card">
+        <div class="side-card-title">
+          <span id="ui-landmarks-title">Molekulyar Anatomik Belgilar</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+        </div>
+        <div class="landmarks-container" id="landmarks-list">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+      
+      <!-- Mechanism & Salt Explanation -->
+      <div class="glass-panel side-card">
+        <div class="side-card-title">
+          <span id="val-form-title">Tuz va Gidrat shakli izohi</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.55;" id="val-form-desc">
+          <!-- Form info -->
+        </p>
+        
+        <div class="side-card-title" style="margin-top: 1.25rem;">
+          <span id="ui-mechanism-title">Ta'sir Mexanizmi</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.55;" id="val-mechanism-desc">
+          <!-- Mechanism info -->
+        </p>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- Comparison & Study Sections -->
+  <section class="study-sections-container">
+    
+    <!-- Comparison Table Card -->
+    <div class="glass-panel table-card" id="comparison-section">
+      <div class="side-card-title" style="font-size: 1.4rem;">
+        <span id="ui-table-header">BCR–ABL Ingibitorlarining Qiyosiy Tahlili (Table 1)</span>
+        <span style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: normal;">Tasdiqlangan neytral skeletlar</span>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;" id="ui-table-desc">
+        Ushbu jadval o'quv qo'llanmasi ma'lumotlariga asoslangan bo'lib, molekulalarni tezda bir-biridan ajratish va 3D fazodagi o'ziga xos farqlarini ko'rish imkonini beradi.
+      </p>
+      
+      <div class="table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th id="th-feature">Strukturaviy belgi</th>
+              <th>Imatinib</th>
+              <th>Nilotinib</th>
+              <th>Dasatinib</th>
+              <th>Bosutinib</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Piperazin halqasi</strong></td>
+              <td><span class="badge-yes">✓ Mavjud</span></td>
+              <td><span class="badge-no">✗ YO'Q</span></td>
+              <td><span class="badge-yes">✓ Mavjud (OH bilan)</span></td>
+              <td><span class="badge-yes">✓ Mavjud (Propoksi)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Amid bog'i (C(=O)–N)</strong></td>
+              <td><span class="badge-yes">✓ Mavjud</span></td>
+              <td><span class="badge-yes">✓ Mavjud (Teskari)</span></td>
+              <td><span class="badge-yes">✓ Mavjud</span></td>
+              <td><span class="badge-no">✗ YO'Q (Faqat amin/efir)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Ajratib turuvchi xususiyati</strong></td>
+              <td>Bog'langan piridin + pirimidin</td>
+              <td>CF3 (3 ta F) + Imidazol</td>
+              <td>Tiazol (N/S) + Spirt (OH)</td>
+              <td>Xinolin yadrosi + Nitril (-C≡N)</td>
+            </tr>
+            <tr>
+              <td><strong>Kovalent Galogenlar</strong></td>
+              <td>0 ta (Yo'q)</td>
+              <td>3 ta F (Ftor)</td>
+              <td>1 ta Cl (Xlor)</td>
+              <td>2 ta Cl (Xlor)</td>
+            </tr>
+            <tr>
+              <td><strong>Asosiy dorida Oltingugurt (S)</strong></td>
+              <td><span class="badge-no">✗ Yo'q (Tuzida bor)</span></td>
+              <td><span class="badge-no">✗ Yo'q</span></td>
+              <td><span class="badge-yes">✓ HA (Tiazolda)</span></td>
+              <td><span class="badge-no">✗ Yo'q</span></td>
+            </tr>
+            <tr>
+              <td><strong>Kristall shakli (Formulation)</strong></td>
+              <td>Mezilat tuzi (Gleevec)</td>
+              <td>Monogidroxlorid monogidrat</td>
+              <td>Monogidrat (Sprycel)</td>
+              <td>Monogidrat (Bosulif)</td>
+            </tr>
+            <tr>
+              <td><strong>RCSB PDB Kompleks kodi</strong></td>
+              <td><a href="https://www.rcsb.org/structure/1IEP" target="_blank" style="color:var(--accent-cyan); text-decoration:none; font-weight:600;">1IEP</a></td>
+              <td><a href="https://www.rcsb.org/structure/3CS9" target="_blank" style="color:var(--accent-cyan); text-decoration:none; font-weight:600;">3CS9</a></td>
+              <td><a href="https://www.rcsb.org/structure/2HYY" target="_blank" style="color:var(--accent-cyan); text-decoration:none; font-weight:600;">2HYY</a></td>
+              <td><a href="https://www.rcsb.org/structure/3UE4" target="_blank" style="color:var(--accent-cyan); text-decoration:none; font-weight:600;">3UE4</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Self-Check & Study Mode (Section 7) -->
+    <div class="glass-panel table-card" id="study-section">
+      <div class="side-card-title" style="font-size: 1.4rem;">
+        <span id="ui-self-check-title">O'z-o'zini Tekshirish Savollari (Self-Check Q&A)</span>
+        <span style="font-size: 0.85rem; color: var(--accent-emerald);">Interaktiv Viktorina</span>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;" id="ui-self-check-desc">
+        Strukturalarni o'rganish bo'yicha mustaqil bilimingizni sinab ko'ring. Javobni ochish uchun tugmani bosing:
+      </p>
+      
+      <div class="self-check-grid" id="self-check-container">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- Fullscreen Modal View -->
+  <div class="modal-overlay" id="fullscreen-modal">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <h3 id="modal-mol-title" style="color: #fff;">Imatinib - 3D 360° Panorama</h3>
+          <span class="viewer-badge-360">360° Rejim</span>
+        </div>
+        <button class="icon-btn" id="btn-modal-close" title="Yopish">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-viewport"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>
+      <strong>BCR–ABL Inhibitors 3D Link Hub</strong> · Fayllar asosida yaratildi: 
+      <em>bcr-abl-inhibitors-visual-study-guide.md</em> & <em>verified_structures.json</em>.
+    </p>
+    <p style="margin-top: 0.5rem;">
+      Manbalar: 
+      <a href="https://pubchem.ncbi.nlm.nih.gov/" target="_blank">NCBI PubChem</a> · 
+      <a href="https://www.ebi.ac.uk/chebi/" target="_blank">EMBL-EBI ChEBI</a> · 
+      <a href="https://www.rcsb.org/" target="_blank">RCSB PDB</a> · 
+      <a href="https://dailymed.nlm.nih.gov/" target="_blank">DailyMed FDA</a> · 
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3517953/" target="_blank">PMC3517953</a>
+    </p>
+  </footer>
+
+  <!-- App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
